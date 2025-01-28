@@ -15,6 +15,7 @@ export class FavoritesComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo({top: 0, behavior: 'smooth'}); //scroll to top on page open.
     this.photoService.favoritePhotosSubject.subscribe((photos: Photo[]) => {
       this.photos = photos;
     })
