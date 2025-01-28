@@ -14,8 +14,8 @@ export interface Photo {
   providedIn: 'root'
 })
 export class PhotoService {
-  private allPhotos: Photo[] = [];
-  private favoritePhotos: { [id: string]: Photo } = {};
+  private allPhotos: Photo[] = JSON.parse(localStorage.getItem('allPhotos') || '[]') || [];
+  private favoritePhotos: { [id: string]: Photo } = JSON.parse(localStorage.getItem('favoritePhotos') || '{}') || {};
   loading = new BehaviorSubject<boolean>(true);
   pageSubject = new BehaviorSubject<number>(1);
   photosSubject = new Subject<Photo[]>();
@@ -43,6 +43,7 @@ export class PhotoService {
 
       this.loading.next(false);
       this.allPhotos = [...this.allPhotos, ...photos];
+      localStorage.setItem('allPhotos', JSON.stringify(this.allPhotos));
       this.photosSubject.next(this.allPhotos);
     });
   }
@@ -66,6 +67,7 @@ export class PhotoService {
   addFavoritePhoto(photo: Photo): void {
     if (!this.favoritePhotos[photo.id]) {
       this.favoritePhotos[photo.id] = photo;
+      localStorage.setItem('favoritePhotos', JSON.stringify(this.favoritePhotos));
       this.favoritePhotosSubject.next(Object.values(this.favoritePhotos));
     }
   }
@@ -95,6 +97,7 @@ export class PhotoService {
     return new Promise((resolve) => {
       if (this.favoritePhotos[id]) {
         delete this.favoritePhotos[id];
+        localStorage.setItem('favoritePhotos', JSON.stringify(this.favoritePhotos));
         this.favoritePhotosSubject.next(Object.values(this.favoritePhotos));
       }
       resolve();
