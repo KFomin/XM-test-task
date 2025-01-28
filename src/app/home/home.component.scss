@@ -27,24 +27,15 @@
       font-weight: bold;
     }
 
-    .favorite-button {
-      margin-top: 1rem;
-      transform: translateX(200%);
-      position: absolute;
-      font-size: 1.5rem;
-      background-color: rgba(255, 255, 255, 0.76);
-      border: none;
-      border-radius: 25px;
-      color: black;
-      width: 2rem;
-      height: 2rem;
-    }
-
     &:hover {
       background-color: rgba(128, 128, 128, 0.22);
     }
 
   }
+}
+
+.favorite {
+  background-color: rgba(255, 221, 0, 0.42);
 }
 
 .loading-space {

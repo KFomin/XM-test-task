@@ -1,13 +1,6 @@
 import {ChangeDetectionStrategy, Component, HostListener, OnInit} from '@angular/core';
-import {SafeUrl} from '@angular/platform-browser';
-import {PhotoService} from '../photo.service';
+import {Photo, PhotoService} from '../photo.service';
 
-export interface Photo {
-  id: string;
-  author: string;
-  download_url: string;
-  url: SafeUrl;
-}
 
 @Component({
   selector: 'app-home',
@@ -23,7 +16,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.photos);
     this.photoService.photosSubject.subscribe((photos: Photo[]) => {
       this.photos = photos;
     })
@@ -48,5 +40,13 @@ export class HomeComponent implements OnInit {
       this.photoService.loading.next(true);
       this.photoService.pageSubject.next(this.photoService.pageSubject.value + 1);
     }
+  }
+
+  addToFavoritePhoto(photo: Photo): void {
+    this.photoService.addFavoritePhoto(photo);
+  }
+
+  isFavorite(photo: Photo) {
+    return this.photoService.getFavoritePhotos().map(a => a.id).includes(photo.id)
   }
 }

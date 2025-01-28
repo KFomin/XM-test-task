@@ -1,1 +1,14 @@
-<p>favorites works!</p>
+<ng-container>
+  <div class="images-container">
+    <!--    @for (photo of photos; track photo.id) {-->
+    <span *ngFor="let photo of photos; trackBy: trackByPhotoId" class="image-block">
+      <img class="image" *ngIf="photo.url"
+           [src]="photo.download_url"
+           [alt]="photo.author"
+           width="200"
+           height="300"/>
+      <p class="image-author">{{ photo.author }}</p>
+      </span>
+    <!--    }-->
+  </div>
+</ng-container>

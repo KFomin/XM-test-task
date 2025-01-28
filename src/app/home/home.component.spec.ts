@@ -10,7 +10,7 @@ class MockPhotoService {
   pageSubject = new BehaviorSubject<number>(1);
 
   getAllPhotos() {
-    return []; // Вернуть пустой массив
+    return [];
   }
 }
 
@@ -62,9 +62,13 @@ describe('HomeComponent', () => {
     const loadingSpy = spyOn(photoService.loading, 'next').and.callThrough();
     const pageSpy = spyOn(photoService.pageSubject, 'next').and.callThrough();
 
-    component.onWindowScroll(); // Call the window scroll handler
+    // Call the window scroll handler
+    component.onWindowScroll();
 
-    expect(loadingSpy).toHaveBeenCalledWith(true); // Check loading state is triggered
-    expect(pageSpy).toHaveBeenCalledWith(2); // Check that the next page value is called
+    // Check loading state is triggered
+    expect(loadingSpy).toHaveBeenCalledWith(true);
+
+    // Check that the next page value is called
+    expect(pageSpy).toHaveBeenCalledWith(2);
   });
 });

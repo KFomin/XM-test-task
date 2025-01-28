@@ -10,15 +10,16 @@ export interface Photo {
   url: SafeUrl;
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class PhotoService {
   private allPhotos: Photo[] = [];
+  private favoritePhotos: { [id: string]: Photo } = {};
   loading = new BehaviorSubject<boolean>(true);
   pageSubject = new BehaviorSubject<number>(1);
   photosSubject = new Subject<Photo[]>();
+  favoritePhotosSubject = new Subject<Photo[]>();
 
   constructor(private http: HttpClient) {
     this.pageSubject.pipe(delay(this.randomDelayBetween200and300())).subscribe(page => {
@@ -61,4 +62,16 @@ export class PhotoService {
       }
     });
   }
+
+  addFavoritePhoto(photo: Photo): void {
+    if (!this.favoritePhotos[photo.id]) {
+      this.favoritePhotos[photo.id] = photo;
+      this.favoritePhotosSubject.next(Object.values(this.favoritePhotos));
+    }
+  }
+
+  getFavoritePhotos(): Photo[] {
+    return Object.values(this.favoritePhotos);
+  }
+
 }
