@@ -74,7 +74,7 @@ export class PhotoService {
     return Object.values(this.favoritePhotos);
   }
 
-  getPhotoDetails(id: number): Promise<Photo> {
+  getPhotoDetails(id: string): Promise<Photo> {
     const imageDetailsUrl = `https://picsum.photos/id/${id}/info`
     return lastValueFrom(
       this.http.get<Photo>(imageDetailsUrl).pipe(

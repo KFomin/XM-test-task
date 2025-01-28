@@ -44,13 +44,13 @@ describe('HomeComponent', () => {
   it('should track by photo id',
     () => {
       const mockPhoto = {
-        id: 1,
+        id: '1',
         author: 'Author',
         download_url: 'url',
         url: 'url'
       };
 
-      expect(component.trackByPhotoId(0, mockPhoto)).toBe(1);
+      expect(component.trackByPhotoId(0, mockPhoto)).toBe('1');
     });
 
   it('should handle window scroll', () => {

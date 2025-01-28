@@ -20,7 +20,7 @@ export class PhotoDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
-        this.photoService.getPhotoDetails(id).then(photo => {
+        this.photoService.getPhotoDetails(String(id)).then(photo => {
           this.photoId = photo.id;
           this.photoUrl = photo.download_url;
         })

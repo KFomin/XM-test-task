@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  trackByPhotoId(index: number, photo: any): number {
+  trackByPhotoId(index: number, photo: Photo): string {
     return photo.id;
   }
 

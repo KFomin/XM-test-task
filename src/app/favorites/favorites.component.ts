@@ -23,7 +23,7 @@ export class FavoritesComponent implements OnInit {
     }
   }
 
-  trackByPhotoId(index: number, photo: any): number {
+  trackByPhotoId(index: number, photo: Photo): string {
     return photo.id;
   }
 
