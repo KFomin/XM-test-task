@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, delay, Subject} from 'rxjs';
+import {BehaviorSubject, delay, lastValueFrom, map, Subject} from 'rxjs';
 import {SafeUrl} from '@angular/platform-browser';
 
 export interface Photo {
@@ -72,6 +72,33 @@ export class PhotoService {
 
   getFavoritePhotos(): Photo[] {
     return Object.values(this.favoritePhotos);
+  }
+
+  getPhotoDetails(id: number): Promise<Photo> {
+    const imageDetailsUrl = `https://picsum.photos/id/${id}/info`
+    return lastValueFrom(
+      this.http.get<Photo>(imageDetailsUrl).pipe(
+        map(photo =>
+          ({
+            id: photo.id,
+            author: photo.author,
+            download_url: photo.download_url,
+            url: photo.url,
+          })
+        )
+      )
+    )
+      ;
+  }
+
+  removePhotoFromFavorites(id: string): Promise<void> {
+    return new Promise((resolve) => {
+      if (this.favoritePhotos[id]) {
+        delete this.favoritePhotos[id];
+        this.favoritePhotosSubject.next(Object.values(this.favoritePhotos));
+      }
+      resolve();
+    });
   }
 
 }

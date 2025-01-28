@@ -1,7 +1,7 @@
 <ng-container>
   <div class="images-container">
     <!--    @for (photo of photos; track photo.id) {-->
-    <span *ngFor="let photo of photos; trackBy: trackByPhotoId" class="image-block">
+    <span *ngFor="let photo of photos; trackBy: trackByPhotoId" class="image-block" (click)="getIntoDetails(photo.id)">
       <img class="image" *ngIf="photo.url"
            [src]="photo.download_url"
            [alt]="photo.author"
@@ -10,5 +10,6 @@
       <p class="image-author">{{ photo.author }}</p>
       </span>
     <!--    }-->
+    <p *ngIf="photos.length === 0">no favorites yet</p>
   </div>
 </ng-container>

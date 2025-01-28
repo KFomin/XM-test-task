@@ -1,0 +1,27 @@
+.remove-button {
+  margin: 1rem;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.22);
+  }
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+
+  img {
+    width: 100%;
+    margin: 3rem 0;
+  }
+}

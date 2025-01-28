@@ -1,1 +1,6 @@
-<p>photo-detail works!</p>
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="photoUrl" class="image-container">
+  <img [src]="photoUrl"/>
+</div>
+<button class="remove-button" type="button" (click)="removeFromFavorites()">remove from favorites</button>
+<div *ngIf="!photoUrl && !loading">Photo not found.</div>

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {Photo, PhotoService} from "../photo.service";
 
 @Component({
@@ -9,7 +10,8 @@ import {Photo, PhotoService} from "../photo.service";
 export class FavoritesComponent implements OnInit {
   photos: Photo[] = [];
 
-  constructor(private photoService: PhotoService) {
+  constructor(private photoService: PhotoService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -23,5 +25,9 @@ export class FavoritesComponent implements OnInit {
 
   trackByPhotoId(index: number, photo: any): number {
     return photo.id;
+  }
+
+  getIntoDetails(id: string) {
+    this.router.navigate(['/photos', id]);
   }
 }
