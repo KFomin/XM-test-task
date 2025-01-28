@@ -1,15 +1,18 @@
 <ng-container>
   <div class="images-container">
-    <!--    @for (photo of photos; track photo.id) {-->
-    <span *ngFor="let photo of photos; trackBy: trackByPhotoId" class="image-block" (click)="getIntoDetails(photo.id)">
-      <img class="image" *ngIf="photo.url"
+    <mat-card *ngFor="let photo of photos; trackBy: trackByPhotoId"
+              class="image-block"
+              (click)="getIntoDetails(photo.id)">
+      <img mat-card-image
+           *ngIf="photo.url"
            [src]="photo.download_url"
            [alt]="photo.author"
            width="200"
            height="300"/>
-      <p class="image-author">{{ photo.author }}</p>
-      </span>
-    <!--    }-->
-    <p *ngIf="photos.length === 0">no favorites yet</p>
+      <mat-card-content>
+        <p class="image-author">{{ photo.author }}</p>
+      </mat-card-content>
+    </mat-card>
+    <p *ngIf="photos.length === 0">No favorites yet</p>
   </div>
 </ng-container>

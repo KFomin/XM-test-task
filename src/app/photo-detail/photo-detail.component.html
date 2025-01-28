@@ -1,6 +1,11 @@
-<div *ngIf="loading">Loading...</div>
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
 <div *ngIf="photoUrl" class="image-container">
-  <img [src]="photoUrl"/>
+  <img [src]="photoUrl" alt="Photo"/>
 </div>
-<button class="remove-button" type="button" (click)="removeFromFavorites()">remove from favorites</button>
-<div *ngIf="!photoUrl && !loading">Photo not found.</div>
+
+<button mat-button color="warn" class="remove-button" (click)="removeFromFavorites()">Remove from Favorites</button>
+
+<div *ngIf="!photoUrl && !loading">
+  Photo not found.
+</div>

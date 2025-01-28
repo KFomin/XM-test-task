@@ -3,6 +3,11 @@ import {FavoritesComponent} from './favorites.component';
 import {Photo, PhotoService} from '../photo.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subject} from 'rxjs';
+import {MatCardModule} from "@angular/material/card";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatButtonModule} from "@angular/material/button";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 class MockPhotoService {
   favoritePhotosSubject = new Subject<Photo[]>();
@@ -27,6 +32,14 @@ describe('FavoritesComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [FavoritesComponent],
+      imports: [
+        MatCardModule,
+        MatProgressSpinnerModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        MatToolbarModule,
+        MatButtonModule
+      ],
       providers: [
         {provide: PhotoService, useClass: MockPhotoService},
         {provide: Router, useClass: MockRouter},

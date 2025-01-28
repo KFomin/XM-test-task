@@ -4,6 +4,11 @@ import {Photo, PhotoService} from '../photo.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {of, Subject} from 'rxjs';
+import {MatCardModule} from "@angular/material/card";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatButtonModule} from "@angular/material/button";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 class MockPhotoService {
   favoritePhotosSubject = new Subject<Photo[]>();
@@ -36,7 +41,15 @@ describe('PhotoDetailComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PhotoDetailComponent],
-      imports: [HttpClientModule],
+      imports: [
+        HttpClientModule,
+        MatCardModule,
+        MatProgressSpinnerModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        MatToolbarModule,
+        MatButtonModule
+      ],
       providers: [
         {provide: PhotoService, useClass: MockPhotoService},
         {provide: Router, useClass: MockRouter},

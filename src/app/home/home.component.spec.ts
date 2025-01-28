@@ -2,6 +2,11 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {HomeComponent} from './home.component';
 import {Photo, PhotoService} from '../photo.service';
 import {BehaviorSubject, Subject} from 'rxjs';
+import {MatCardModule} from "@angular/material/card";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatButtonModule} from "@angular/material/button";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 class MockPhotoService {
   // empty array for initialization.
@@ -22,6 +27,14 @@ describe('HomeComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HomeComponent],
+      imports: [
+        MatCardModule,
+        MatProgressSpinnerModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        MatToolbarModule,
+        MatButtonModule
+      ],
       providers: [{provide: PhotoService, useClass: MockPhotoService}]
     });
 

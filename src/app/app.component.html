@@ -1,5 +1,5 @@
-<nav class="navbar">
-  <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-  <a routerLink="/favorites" routerLinkActive="active-link">Favorites</a>
-</nav>
+<mat-toolbar class="navbar" color="primary">
+  <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+  <a mat-button routerLink="/favorites" routerLinkActive="active-link">Favorites</a>
+</mat-toolbar>
 <router-outlet></router-outlet>

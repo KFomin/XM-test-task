@@ -1,23 +1,23 @@
 <ng-container>
   <div class="images-container">
-    <!--    @for (photo of photos; track photo.id) {-->
-    <span *ngFor="let photo of photos; trackBy: trackByPhotoId"
-          class="image-block"
-          [ngClass]="{'favorite': isFavorite(photo)}"
-          (click)="addToFavoritePhoto(photo)">
-        <img class="image" *ngIf="photo.url"
-             [src]="photo.download_url"
-             [alt]="photo.author"
-             width="200"
-             height="300"/>
+    <mat-card *ngFor="let photo of photos; trackBy: trackByPhotoId"
+              class="image-block"
+              [ngClass]="{'favorite': isFavorite(photo)}"
+              (click)="addToFavoritePhoto(photo)">
+      <img mat-card-image
+           *ngIf="photo.url"
+           [src]="photo.download_url"
+           [alt]="photo.author"
+           width="200"
+           height="300"/>
+      <mat-card-content>
         <p class="image-author">{{ photo.author }}</p>
-      </span>
-    <!--    }-->
+      </mat-card-content>
+    </mat-card>
   </div>
+
   <div class="loading-space">
-    <span *ngIf="loading">
-      <p>loading</p>
-      <div class="loading-spinner"></div>
-    </span>
+    <mat-spinner *ngIf="loading" diameter="40"></mat-spinner>
+    <p *ngIf="loading">Loading...</p>
   </div>
 </ng-container>
